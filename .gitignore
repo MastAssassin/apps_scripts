@@ -68,7 +68,8 @@ vcpkg_installed/
 Testing/
 .cache/
 test/
-*/GalaxyBookMask.bat
 
 #misc
 .vscode/
+Skripte/GalaxyBookMask.bat
+
