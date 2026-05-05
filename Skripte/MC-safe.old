@@ -1,0 +1,4 @@
+@echo off
+xcopy "C:\Users\lukas.LUKAS_DESKTOP.000\AppData\Roaming\.minecraft\Woods Of The Past-5.3" "C:\Users\lukas.LUKAS_DESKTOP.000\OneDrive\Mc safe\Woods" /E /I /Y
+echo Kopiervorgang abgeschlossen.
+pause
