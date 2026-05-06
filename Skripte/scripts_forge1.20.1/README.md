@@ -11,7 +11,8 @@ in Terminal dann diesen Befehl ausfuehren "Set-ExecutionPolicy -Scope CurrentUse
 /**************************************************************
 Note for Git Visitors:
 These scripts were orginally designed for friends of mine, who
-had difficulties with the installtion of forge. I delivered the 
+had difficulties with the installtion of forge.
+I delivered the 
 scripts in a directory with the forge installer and the 
 game Directory. Since you use Git, you probably won't need it. 
 **************************************************************/
