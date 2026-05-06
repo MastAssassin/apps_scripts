@@ -7,6 +7,7 @@ ggf. funktionieren die Skripte nicht, weil Windows Skripte im Allgemeinen blocki
 Dazu win + r druecken und dann "powershell.exe" starten oder ueber Suche aufrufen
 in Terminal dann diesen Befehl ausfuehren "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted" 
 
+
 /**************************************************************
 Note for Git Visitors:
 These scripts were orginally designed for friends of mine, who
