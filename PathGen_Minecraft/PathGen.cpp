@@ -218,7 +218,7 @@ ostream &operator<<(ostream &outFile, const List &a)
   }
   Block *p = a.head;
   outFile << "Anzahl gespeicherter Bloecke: " << a.cnt() << endl
-          << "-------------------------------" << endl
+          << "--------------------------------" << endl
           << "Block ID" << " || " << "      Blockname      " << " || " << "Kuerzel" << endl
           << "--------------------------------------------" << endl;
   while (p != nullptr)
