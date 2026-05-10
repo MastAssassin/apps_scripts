@@ -217,7 +217,7 @@ ostream &operator<<(ostream &outFile, const List &a)
     return outFile;
   }
   Block *p = a.head;
-  outFile << "Anzahl gespeicherter Blöcke: " << a.cnt() << endl
+  outFile << "Anzahl gespeicherter Bloecke: " << a.cnt() << endl
           << "-------------------------------" << endl
           << "Block ID" << " || " << "      Blockname      " << " || " << "Kuerzel" << endl
           << "--------------------------------------------" << endl;
@@ -237,7 +237,6 @@ ostream &operator<<=(ostream &outFile, const List &a)
     outFile <<= *p;
     p = p->gnext();
   }
-  outFile << endl;
   return outFile;
 }
 
