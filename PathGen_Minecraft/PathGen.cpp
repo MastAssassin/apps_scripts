@@ -113,6 +113,8 @@ public:
 
   void operator+=(Block *neu);
   void operator-=(string name);
+  void operator-=(int z);
+  void operator -= (char z);
   void set_default();
   int cnt() const;
 };
@@ -165,6 +167,94 @@ void List::operator-=(string name)
   Block *prev = nullptr;
 
   while (p != nullptr && p->name != name)
+  {
+    prev = p;
+    p = p->next;
+  }
+
+  if (p == nullptr)
+  {
+    cout << "Fehler: Block nicht gefunden!" << endl;
+    return;
+  }
+
+  if (prev == nullptr)
+  {
+    this->head = p->next;
+
+    if (this->head == nullptr)
+    {
+      this->tail = nullptr;
+    }
+  }
+  else
+  {
+    prev->next = p->next;
+
+    if (p == this->tail)
+    {
+      this->tail = prev;
+    }
+  }
+
+  delete p;
+}
+void List::operator-=(int z)
+{
+  if (this->head == nullptr)
+  {
+    cout << "Fehler: Liste ist leer!" << endl;
+    return;
+  }
+
+  Block *p = this->head;
+  Block *prev = nullptr;
+
+  while (p != nullptr && p->id != z)
+  {
+    prev = p;
+    p = p->next;
+  }
+
+  if (p == nullptr)
+  {
+    cout << "Fehler: Block nicht gefunden!" << endl;
+    return;
+  }
+
+  if (prev == nullptr)
+  {
+    this->head = p->next;
+
+    if (this->head == nullptr)
+    {
+      this->tail = nullptr;
+    }
+  }
+  else
+  {
+    prev->next = p->next;
+
+    if (p == this->tail)
+    {
+      this->tail = prev;
+    }
+  }
+
+  delete p;
+}
+void List::operator-=(char z)
+{
+  if (this->head == nullptr)
+  {
+    cout << "Fehler: Liste ist leer!" << endl;
+    return;
+  }
+
+  Block *p = this->head;
+  Block *prev = nullptr;
+
+  while (p != nullptr && p->c != z)
   {
     prev = p;
     p = p->next;
@@ -327,11 +417,11 @@ void ls(List *inventory);
 void del(List *inventory);
 List *read();
 void write(List *inventory);
+bool changed = false;
 
 int main(int argc, const char **argv)
 {
   srand(time(nullptr));
-  bool changed = false;
 
   List *inventory = read();
   if (inventory->cnt() == 0)
@@ -357,6 +447,7 @@ int main(int argc, const char **argv)
     cout << "Warte auf Eingabe: ";
     cin >> word;
     cin.clear();
+    cin.ignore(30, '\n');
     cout << endl;
   }
   else
@@ -373,11 +464,9 @@ int main(int argc, const char **argv)
     else if (word == "add")
     {
       add(inventory);
-      changed = true;
     }
     else if (word == "del")
     {
-      changed = true;
       del(inventory);
     }
     else if (word == "ls")
@@ -405,6 +494,7 @@ int main(int argc, const char **argv)
          << "Prgramm beenden             : " << "end" << endl
          << "Warte auf Eingabe           : ";
     cin >> word;
+    cin.ignore(30, '\n');
     cout << endl;
   }
 }
@@ -414,6 +504,7 @@ void gen(List *inventory)
   int len, wide = 0;
   cout << "Warte auf Eingabe, Laenge: ";
   cin >> len;
+  cin.ignore(30, '\n');
   if (cin.fail())
   {
     cout << endl
@@ -423,11 +514,13 @@ void gen(List *inventory)
   }
   cout << "Warte auf Eingabe, Breite: ";
   cin >> wide;
+  cin.ignore(30, '\n');
   if (cin.fail())
   {
     cout << endl
          << "Fehler: Eingabe muss numerisch sein\n\n";
     return;
+
   }
 
   if (len <= 0 || wide <= 0)
@@ -475,8 +568,11 @@ void add(List *inventory)
   char c = ' ';
   do
   {
+    cout << "'end' eingeben um zurueckzukehren" << endl;
     cout << "Erwarte Eingabe, Blockname: ";
     cin >> name;
+    cin.ignore(30, '\n');
+    if (name == "end") return;
     if (name.length() > 21)
     {
       cout << endl
@@ -490,12 +586,14 @@ void add(List *inventory)
   {
     cout << "Erwarte Eingabe, Blockkuerzel: ";
     cin >> c;
+    cin.ignore(30, '\n');
   } while (c == ' ');
 
   Block *neu = new Block(name, c);
   // cout << neu;
   (*inventory) += neu;
   cin.clear();
+  changed = true;
 }
 
 void ls(List *inventory)
@@ -508,12 +606,37 @@ void del(List *inventory)
   ls(inventory);
 
   cout << endl
-       << "Welcher Block soll entfert werden?" << endl;
+       << "Welcher Block soll entfernt werden?" << endl;
   string name = " ";
+  int id;
+  char c;
   do
   {
-    cout << "Erwarte Eingabe, Blockname: ";
+    cout << "'end' eingeben um zurueckzukehren" << endl;
+    cout << "Erwarte Eingabe, Blockname/ID/Blockkürzel: ";
     cin >> name;
+    cin.ignore(30, '\n');
+    if (name == "end") return;
+    if (name.length() <= 2)
+    {
+      char z1 = name[0];
+      char z2 = name[1];
+      if (isdigit(z1))
+      {
+        id =(z1-'0');
+        if (isdigit((z2)))
+        {
+          id *=10;
+        id += (z2-'0');
+        }
+        (*inventory) -= id;
+        return;
+        changed = true;
+      }
+        (*inventory) -= z1;
+        changed = true;
+        return;
+    }
     if (name.length() > 21)
     {
       cout << endl
@@ -524,6 +647,7 @@ void del(List *inventory)
   } while (name == " ");
 
   (*inventory) -= name;
+  changed = true;
 }
 
 List *read()
@@ -571,6 +695,6 @@ void write(List *inventory)
     exit(EXIT_FAILURE);
   }
   file <<= *inventory;
-  cout << "Bibliothek wurde erfolreich gespeichert!";
+  cout << "Bibliothek wurde erfolreich gespeichert!" <<endl;
   file.close();
 }
