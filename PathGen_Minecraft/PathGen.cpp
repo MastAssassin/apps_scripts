@@ -332,7 +332,7 @@ ostream &operator<<=(ostream &outFile, const List &a)
 
 void List::set_default()
 {
-  string sarr[5] = {"stone", "stonebrick", "cobblestone", "(chiseled) dirt", "andesite"};
+  string sarr[5] = {"stone", "stonebrick", "cobblestone", "(chiseled)_dirt", "andesite"};
   char carr[5] = {'s', 'b', 'c', 'd', 'a'};
 
   for (int i = 0; i < 5; i++)
