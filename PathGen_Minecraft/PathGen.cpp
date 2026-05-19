@@ -613,7 +613,7 @@ void del(List *inventory)
   do
   {
     cout << "'end' eingeben um zurueckzukehren" << endl;
-    cout << "Erwarte Eingabe, Blockname/ID/Blockkürzel: ";
+    cout << "Erwarte Eingabe, Blockname/ID/Blockkuerzel: ";
     cin >> name;
     cin.ignore(30, '\n');
     if (name == "end") return;
@@ -630,8 +630,8 @@ void del(List *inventory)
         id += (z2-'0');
         }
         (*inventory) -= id;
-        return;
         changed = true;
+        return;
       }
         (*inventory) -= z1;
         changed = true;
