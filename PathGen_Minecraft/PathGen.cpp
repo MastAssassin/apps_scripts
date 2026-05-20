@@ -117,6 +117,7 @@ public:
   void operator -= (char z);
   void set_default();
   int cnt() const;
+  void reset();
 };
 
 void List::operator+=(Block *neu)
@@ -298,6 +299,19 @@ int List::cnt() const
   }
   return i;
 }
+void List::reset()
+{
+while (head!=nullptr)
+{
+  Block *tmp = head;
+  head = head->next;
+  delete tmp;
+}
+Block *neu = new Block("gravel", 'g');
+*this += neu;
+set_default();
+cout << "Standardwerte wurden wiederhergestellt!"<<endl;
+}
 
 ostream &operator<<(ostream &outFile, const List &a)
 {
@@ -437,11 +451,12 @@ int main(int argc, const char **argv)
   if (argc != 2)
   {
     cout << "Funktionen:" << endl
-         << "Pfad generieren             : " << "gen" << endl
-         << "Blockbibliothek erweitern   : " << "add" << endl
-         << "Blockbibliothek verkleinern : " << "del" << endl
-         << "Blockbibliothek ausgeben    : " << "ls" << endl
-         << "Prgramm beenden             : " << "end" << endl;
+         << "Pfad generieren              : " << "gen" << endl
+         << "Blockbibliothek erweitern    : " << "add" << endl
+         << "Blockbibliothek verkleinern  : " << "del" << endl
+         << "Blockbibliothek zurücksetzen : " << "res" << endl
+         << "Blockbibliothek ausgeben     : " << "ls" << endl
+         << "Prgramm beenden              : " << "end" << endl;
     cout << endl
          << "Wenn mir jemals langweilig werden sollte baue ich vllt eine grafische Oberflaeche." << endl;
     cout << "Warte auf Eingabe: ";
@@ -468,6 +483,10 @@ int main(int argc, const char **argv)
     else if (word == "del")
     {
       del(inventory);
+    }else if (word == "res")
+    {
+      inventory->reset();
+      changed = true;
     }
     else if (word == "ls")
     {
@@ -487,12 +506,13 @@ int main(int argc, const char **argv)
     }
 
     cout << "Funktionen:" << endl
-         << "Pfad generieren             : " << "gen" << endl
-         << "Blockbibliothek erweitern   : " << "add" << endl
-         << "Blockbibliothek verkleinern : " << "del" << endl
-         << "Blockbibliothek ausgeben    : " << "ls" << endl
-         << "Prgramm beenden             : " << "end" << endl
-         << "Warte auf Eingabe           : ";
+         << "Pfad generieren              : " << "gen" << endl
+         << "Blockbibliothek erweitern    : " << "add" << endl
+         << "Blockbibliothek verkleinern  : " << "del" << endl
+         << "Blockbibliothek zurücksetzen : " << "res" << endl
+         << "Blockbibliothek ausgeben     : " << "ls" << endl
+         << "Prgramm beenden              : " << "end" << endl
+         << "Warte auf Eingabe            : ";
     cin >> word;
     cin.ignore(30, '\n');
     cout << endl;
@@ -698,3 +718,4 @@ void write(List *inventory)
   cout << "Bibliothek wurde erfolreich gespeichert!" <<endl;
   file.close();
 }
+
