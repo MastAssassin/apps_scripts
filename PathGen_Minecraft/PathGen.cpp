@@ -451,12 +451,12 @@ int main(int argc, const char **argv)
   if (argc != 2)
   {
     cout << "Funktionen:" << endl
-         << "Pfad generieren              : " << "gen" << endl
-         << "Blockbibliothek erweitern    : " << "add" << endl
-         << "Blockbibliothek verkleinern  : " << "del" << endl
-         << "Blockbibliothek zurücksetzen : " << "res" << endl
-         << "Blockbibliothek ausgeben     : " << "ls" << endl
-         << "Prgramm beenden              : " << "end" << endl;
+         << "Pfad generieren               : " << "gen" << endl
+         << "Blockbibliothek erweitern     : " << "add" << endl
+         << "Blockbibliothek verkleinern   : " << "del" << endl
+         << "Blockbibliothek zuruecksetzen : " << "res" << endl
+         << "Blockbibliothek ausgeben      : " << "ls" << endl
+         << "Prgramm beenden               : " << "end" << endl;
     cout << endl
          << "Wenn mir jemals langweilig werden sollte baue ich vllt eine grafische Oberflaeche." << endl;
     cout << "Warte auf Eingabe: ";
@@ -506,13 +506,13 @@ int main(int argc, const char **argv)
     }
 
     cout << "Funktionen:" << endl
-         << "Pfad generieren              : " << "gen" << endl
-         << "Blockbibliothek erweitern    : " << "add" << endl
-         << "Blockbibliothek verkleinern  : " << "del" << endl
-         << "Blockbibliothek zurücksetzen : " << "res" << endl
-         << "Blockbibliothek ausgeben     : " << "ls" << endl
-         << "Prgramm beenden              : " << "end" << endl
-         << "Warte auf Eingabe            : ";
+         << "Pfad generieren               : " << "gen" << endl
+         << "Blockbibliothek erweitern     : " << "add" << endl
+         << "Blockbibliothek verkleinern   : " << "del" << endl
+         << "Blockbibliothek zuruecksetzen : " << "res" << endl
+         << "Blockbibliothek ausgeben      : " << "ls" << endl
+         << "Prgramm beenden               : " << "end" << endl
+         << "Warte auf Eingabe             : ";
     cin >> word;
     cin.ignore(30, '\n');
     cout << endl;
