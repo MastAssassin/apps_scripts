@@ -1,6 +1,9 @@
 # Prerequisites
 *.d
 
+#files without fileending
+!*.*
+
 # Compiled Object files
 *.slo
 *.lo
