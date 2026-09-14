@@ -6,25 +6,17 @@
 
 using namespace std;
 
+const char validInput[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
 void hextox();
 void dectox();
 // void bintox();
 void hexcomp();
 void legal();
-void start() {
-  cout << "What do you wanna do?" << endl
-       << "[0] Hex-comp" << endl
-       << "[1] Hex to x" << endl
-       << "[2] Dec to x"
-       << endl
-       //<< "[3] Bin to x"
-       << "[3] Is-She-Legal-Calc" << endl
-       << "[4] Quit" << endl
-       << "Waiting for input: ";
-  char x;
-  cin >> x;
-
-  switch (x) {
+void start(char x)
+{
+  switch (x)
+  {
   case '0':
     hexcomp();
     break;
@@ -47,118 +39,144 @@ void start() {
   }
 }
 
-void hextox() {
+void hextox()
+{
 
   int z;
   cout << "Hexstring: ";
   cin >> hex >> z;
-  if (cin.fail()) {
+  if (cin.fail())
+  {
     cout << "Illegal input!" << endl;
     return;
   }
   bool neg = false;
-  if (z == 0) {
+  if (z == 0)
+  {
     return;
   }
-  if (z <= 0) {
+  if (z <= 0)
+  {
     neg = true;
   }
   int temp = z;
   string b;
 
-  while (temp > 0) {
+  while (temp > 0)
+  {
     b = to_string(temp % 2) + b;
     temp /= 2;
   }
-  if (neg == true) {
+  if (neg == true)
+  {
     b = "-" + b;
   }
   cout << "Decimal: " << z << endl;
   cout << "Binary: " << b << endl;
 }
 
-void dectox() {
+void dectox()
+{
   int z;
   cout << "Number: ";
   cin >> z;
-  if (cin.fail()) {
+  if (cin.fail())
+  {
     cout << "Illegal input!" << endl;
     return;
   }
   bool neg = false;
-  if (z == 0) {
+  if (z == 0)
+  {
     return;
   }
-  if (z <= 0) {
+  if (z <= 0)
+  {
     neg = true;
   }
   int temp = z;
   string b;
 
-  while (temp > 0) {
+  while (temp > 0)
+  {
     b = to_string(temp % 2) + b;
     temp /= 2;
   }
-  if (neg == true) {
+  if (neg == true)
+  {
     b = "-" + b;
   }
-  cout << "Hexstring: " << hex << z << endl;
+  cout << "Hexstring: ";
+  printf ("%x\n", z);
   cout << "Binary: " << b << endl;
 }
-void hexcomp() {
+void hexcomp()
+{
   int a;
   int b;
   cout << "Hexstring one: ";
   cin >> hex >> a;
-  if (cin.fail()) {
+  if (cin.fail())
+  {
     cout << "Illegal input!" << endl;
     return;
   }
   cout << "Hexstring two: ";
   cin >> hex >> b;
-  if (cin.fail()) {
+  if (cin.fail())
+  {
     cout << "Illegal input!" << endl;
     return;
   }
-  if (a != b) {
+  if (a != b)
+  {
     cout << "Not equal" << endl;
-  } else {
+  }
+  else
+  {
     cout << "Equal" << endl;
   }
 }
-void legal() {
+void legal()
+{
 
   double a;
   double b;
   bool haram = false;
   cout << "Your age: ";
   cin >> hex >> a;
-  if (cin.fail()) {
+  if (cin.fail())
+  {
     cout << "Illegal input!" << endl;
     return;
   }
   cout << "Her age:  ";
   cin >> hex >> b;
-  if (cin.fail()) {
+  if (cin.fail())
+  {
     cout << "Illegal input!" << endl;
     return;
   }
   double calc = a / 2 + 7;
   calc = ceil(calc);
-  if (calc > b) {
+  if (calc > b)
+  {
     haram = true;
   }
   double dif = b - calc;
 
-  if (haram && dif == -1) {
+  if (haram && dif == -1)
+  {
     cout << "You dipped? (y/n) ";
     string chail;
     cin >> chail;
-    if (chail == "y" || chail == "yes") {
+    if (chail == "y" || chail == "yes")
+    {
       cout << "Officer, lock this man up!" << endl;
       return;
     }
-    if (chail == "n" || chail == "no") {
+    if (chail == "n" || chail == "no")
+    {
       cout << "BRO, WTF. Stop the preorder!" << endl;
       return;
     }
@@ -166,15 +184,18 @@ void legal() {
     return;
   }
 
-  if (haram && b < 18) {
+  if (haram && b < 18)
+  {
     cout << "So you have been on the island. Calling 110 ..." << endl;
     return;
   }
-  if (haram) {
+  if (haram)
+  {
     cout << "Dude that's fucking weird. Alt least she's not a minor." << endl;
     return;
   }
-  if (dif >= 7) {
+  if (dif >= 7)
+  {
     cout << "So you are sailing on old ships, huh." << endl;
     return;
   }
@@ -182,8 +203,43 @@ void legal() {
   return;
 }
 
-int main() {
-  for (;;) {
-    start();
+char getInput() {
+    cout << "What do you wanna do?" << endl
+       << "[0] Hex-comp" << endl
+       << "[1] Hex to x" << endl
+       << "[2] Dec to x"
+       << endl
+       //<< "[3] Bin to x"
+       << "[3] Is-She-Legal-Calc" << endl
+       << "[4] Quit" << endl
+       << "Waiting for input: ";
+  char x;
+  cin >> x;
+
+  cout << "x: " << x;
+  bool isValid = false;
+  for (char c: validInput) {
+    if (c == x) {
+      isValid = true;
+    }
   }
+
+  if (!isValid) { return 'f'; }
+
+  return x;
+}
+
+int main()
+{
+  for (;;)
+  {
+    char x = getInput();
+    if (x == 'f') {
+      cerr << "invalid input" << endl;
+      break;
+    }
+    start(x);
+  }
+
+  return 1;
 }
