@@ -216,7 +216,6 @@ char getInput() {
   char x;
   cin >> x;
 
-  cout << "x: " << x;
   bool isValid = false;
   for (char c: validInput) {
     if (c == x) {
