@@ -1,0 +1,6 @@
+0;gravel;g
+1;stone;s
+2;stonebrick;b
+3;cobblestone;c
+4;(chiseled)_dirt;d
+5;andesite;a
