@@ -72,6 +72,9 @@ Testing/
 .cache/
 test/
 
+# configs and appdata
+inventar.txt
+
 #misc
 .vscode/
 Skripte/MC-safe.*
