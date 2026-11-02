@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cstdlib>
 #include "time.h"
 #include <cctype>
 #include <cstring>
@@ -15,9 +14,9 @@ class Block
 {
   friend ostream &operator<<(ostream &outFile, const Block &a);
   friend ostream &operator<<=(ostream &outFile, const Block &a);
-  friend class List;
+  friend class List;  
 
-protected:
+private:
   int id;
   string name;
   char c;
@@ -114,7 +113,7 @@ public:
   void operator+=(Block *neu);
   void operator-=(string name);
   void operator-=(int z);
-  void operator -= (char z);
+  void operator-=(char z);
   void set_default();
   int cnt() const;
   void reset();
@@ -679,7 +678,6 @@ List *read()
   {
     cout << "Fehler: Blockbibliothek konnte nicht geoeffnet werden." << endl
          << "Lege neue Bibliothek an." << endl;
-    //   cout << "lebe noch" << endl;
     return inventory;
   }
   string line;
