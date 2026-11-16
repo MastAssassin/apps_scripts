@@ -75,5 +75,5 @@ test/
 #misc
 .vscode/
 Skripte/MC-safe.*
-Skripte/GalaxyBookMask.bat
+*.bat
 
